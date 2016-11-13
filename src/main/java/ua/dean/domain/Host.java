@@ -1,10 +1,19 @@
 package ua.dean.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
-@Data
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Data @Entity
 public class Host {
 
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.IncrementGenerator")
+    private Long id;
     /**
      * Network name or IP address of device
      */
