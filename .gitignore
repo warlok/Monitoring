@@ -21,6 +21,7 @@ gradle
 
 logs/
 data/cache
+target/
 .settings/
 .classpath
 
