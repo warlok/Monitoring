@@ -31,7 +31,7 @@ public class SnmpClient {
          * OID - .1.3.6.1.2.1.1.5.0 => SysName
          * => MIB explorer will be usefull here, as discussed in previous article
          */
-        String sysDescr = client.getAsString("udp:127.0.0.1/161","public",".1.3.6.1.2.1.1.1.0");
+        String sysDescr = client.getAsString("udp:127.0.0.1/161","public",".1.3.6.1.2.1.1.1.0",".1.3.6.1.2.1.1.5.0",".1.3.6.1.2.1.1.1.0");
         System.out.println(sysDescr);
         client.close();
     }
@@ -43,13 +43,17 @@ public class SnmpClient {
     /**
      * Method which takes a single OID and returns the response from the agent as a String.
      *
-     * @param oidStr
+     * @param oidStrs
      * @return
      * @throws IOException
      */
-    public String getAsString(String addr, String community, String oidStr) throws IOException {
-        OID oid = new OID(oidStr);
-        ResponseEvent event = get(addr, community, new OID[]{oid});
+    public String getAsString(String addr, String community, String ... oidStrs) throws IOException {
+        OID[] oids = new OID[oidStrs.length];
+        for (int i=0; i<oidStrs.length; i++) {
+            OID oid = new OID(oidStrs[i]);
+            oids[i] = oid;
+        }
+        ResponseEvent event = get(addr, community, oids);
         return event.getResponse().get(0).getVariable().toString();
     }
 
