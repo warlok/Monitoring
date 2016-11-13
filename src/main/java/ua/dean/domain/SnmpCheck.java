@@ -3,9 +3,9 @@ package ua.dean.domain;
 import lombok.Data;
 
 @Data
-public class SnmpCheck extends AbstractCheck {
+public class SnmpCheck extends Check {
 
-    public CheckResult doCheck() {
-        return null;
-    }
+    private String oid;
+    private int port;
+
 }

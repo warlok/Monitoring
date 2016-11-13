@@ -1,7 +1,11 @@
 package ua.dean.domain;
 
-public interface Check {
+import lombok.Data;
 
-    CheckResult doCheck();
+@Data
+public abstract class Check {
+
+    protected CheckType type;
+    protected Host host;
 
 }
