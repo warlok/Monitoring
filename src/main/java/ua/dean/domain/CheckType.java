@@ -1,5 +1,5 @@
 package ua.dean.domain;
 
 public enum CheckType {
-    SNMP
+    SNMP, HTTP
 }
