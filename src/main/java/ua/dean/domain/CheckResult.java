@@ -21,6 +21,7 @@ public class CheckResult {
     private CheckStatus status;
 
     public CheckResult(Date date, String value, CheckStatus status) {
+        super();
         this.date=date;
         this.value=value;
         this.status=status;
